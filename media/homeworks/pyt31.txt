@@ -1,0 +1,7 @@
+class sth:
+    a = "Halil"
+    def __init__(self,nm):
+        self.nm = nm
+        print(self.nm)
+y = sth("sth") # a diðerlerinden baðýmsýz #
+print(y.a)

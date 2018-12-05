@@ -1,0 +1,10 @@
+class Enemy:
+    def __init__(self,energy):
+        self.power = energy
+        print("It pops up every time!")
+    def get_power(self):
+        print(self.power)
+Halil = Enemy(85)
+Kadir = Enemy(95)
+Halil.get_power()
+Kadir.get_power()

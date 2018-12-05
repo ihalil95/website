@@ -1,0 +1,26 @@
+class twonine:
+    def dene(self):
+        try:
+            x = float(input("Enter a number"))
+            print("the sum is",1/x)
+        except ZeroDivisionError:
+            print("Lütfen sýfýr yazmayýnýz")
+        except ValueError:
+            print("Lütfen sadece sayý yazýnýz")
+        except:
+            print("Hay aksi! Bir þeyler ters gitti")
+class cs:
+    life = 3
+    def attack(self):
+        self.life -= 1
+        print("Ouch!")
+    def remain(self):
+        print(str(self.life)+" life left")
+
+x = cs()
+y = cs()
+x.attack()
+x.remain()
+y.remain()
+ab = twonine()
+ab.dene()

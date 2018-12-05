@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<style>.footer {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 13px;
+</style>
+      <style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 14px
+}
+</style>
+      <script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+    <!-- starting seo  -->
+  <meta name="description" content="Lecturer's side">
+  <meta name="keywords" content="Prof,Savaş,Erdem,inşaat,concrete,student,homework,structural,civil,engineer,university,istanbul,help,
+lecturer,question,soru,üniversite,öğrenci,ödev">
+  <meta name="author" content="Halil ibrahim YILDIRIM">
+    <meta name="robots" content="index,follow">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, inital-scale=1">
+    <!-- ending seo -->
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <title>Userpanel</title>
+</head>
+<body>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Assoc. Prof. Savaş Erdem</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/"><i class="fas fa-home"></i>   Homepage   </a>
+        </li>	&nbsp;	&nbsp;
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/homeworks"><i class="fas fa-book-reader"></i>  Homeworks  </a>
+        </li>&nbsp;	&nbsp;
+           <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/teaching"><i class="fas fa-chalkboard-teacher"></i>   Teaching   </a>
+        </li>&nbsp;	&nbsp;
+           <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/assistants"><i class="fas fa-user-graduate"></i>   Assistants  </a>
+        </li>&nbsp;	&nbsp;
+          <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/researches"><i class="fab fa-searchengin"></i>   Researches  </a>
+        </li>&nbsp;	&nbsp;
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/publications"><i class="fas fa-book"></i>   Publications   </a>
+        </li>&nbsp;	&nbsp;
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/contact"><i class="fas fa-envelope"></i>   Contact  </a>
+        </li>
+      </ul>{% if user.is_authenticated %}<form class="form-inline my-2 my-lg-0" action="http://127.0.0.1:8000/panel" method="post">{% csrf_token %}
+        <button class="btn btn-info" type="submit" >Userpanel</button></form>{% endif %}
+    </div>
+  </nav>
+<!-- Main -->
+ Welcome <strong>{{ user.get_full_name }} </strong>
+
+
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'info')">Your information</button>
+  <button class="tablinks" onclick="openCity(event, 'hw')">Homeworks sent</button>
+    <button class="tablinks" onclick="openCity(event, 'Logout')">Log out</button>
+</div>
+
+<div id="info" class="tabcontent">
+
+    <p>Student number: <strong>{{ user.username }}</strong> </p>
+    <p>Name: <strong>{{ user.get_full_name }}</strong> </p>
+    <p>Mail: <strong>{{ user.email }} </strong></p>
+    <p>Session Started at: <strong>{{ user.last_login }}</strong> </p>
+
+</div>
+
+<div id="hw" class="tabcontent">
+  <p><table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Student number</th>
+      <th scope="col">Submitting date</th>
+      <th scope="col">Course</th>
+        <th scope="col">Homework Name</th>
+        <th scope="col">File</th>
+        <th scope="col">Grade</th>
+    </tr>
+  </thead>
+  <tbody>{% for k in godb %}
+    <tr>
+      <td>{{ k.studentnumber }}<br /></td>
+      <td>{{ k.date }}<br /></td>
+      <td>{{ k.coursename }}<br /></td>
+      <td>{{ k.workname }}<br /></td>
+      <td><a href="../media/{{ k.files }}">Download your homework</a><br /></td>
+      {% if k.grade == 0 %}<td>No grade input<br /></td>{% elif k.grade == -1 %}
+      <td>0<br /></td>{% else %}
+      <td>{{ k.grade }}<br /></td>{% endif %}
+   {% endfor %} </tr>
+  </tbody>
+</table></p>
+</div>
+<div id="Logout" class="tabcontent">
+  <p>{% if user.is_authenticated %}<form class="form-inline my-2 my-lg-0" action="http://127.0.0.1:8000/logout" method="post">{% csrf_token %}<button class="btn btn-info" type="submit" >Log out!</button></form>{% endif %}
+</p>
+</div>
+
+
+ <!-- /.main -->
+
+ <!-- Footer -->
+  <div class="footer"><i class="fas fa-code"></i>&nbsp;<i class="fab fa-html5"></i>&nbsp;<i class="fab fa-css3"></i>&nbsp;Proudly developed by <b>Halil İbrahim YILDIRIM</b> <a href="https://www.linkedin.com/in/halil-yildirim-25b545b2/" target="_blank"><i class="fab fa-linkedin"></i></a>
+   <a href="http://www.haliil.com" target="_blank"><i class="fas fa-link"></i></a> </div>
+<!-- /.footer -->
+</body>
+</html>
